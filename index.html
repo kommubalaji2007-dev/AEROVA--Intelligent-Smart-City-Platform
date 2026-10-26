@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AEROVA — Intelligent Smart City</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="brand-mark">A</div>
+      <h1>AEROVA</h1>
+      <p>Intelligent Smart City Platform</p>
+      <form id="loginForm">
+        <label>Email</label>
+        <input id="loginEmail" type="email" value="admin@aerova.city" required />
+        <label>Password</label>
+        <input id="loginPassword" type="password" value="aerova123" required />
+        <button class="primary-btn" type="submit">Enter City Control Center</button>
+      </form>
+      <small>Demo login: admin@aerova.city / aerova123</small>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <section id="app" class="app hidden">
+    <header class="topbar">
+      <div class="top-left">
+        <button id="menuBtn" class="icon-btn">☰</button>
+        <div class="mini-brand">A</div>
+        <div>
+          <strong>AEROVA</strong>
+          <span>SMART CITY CONTROL</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="clock" id="clock">--:--:--</div>
+        <button class="icon-btn" id="notificationBtn" title="Notifications">🔔<b id="notifCount">3</b></button>
+        <button class="user-chip" id="profileBtn">👤 Admin</button>
+      </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+      <div class="city-status"><span class="status-dot"></span> City systems online</div>
+      <nav>
+        <button class="nav-item active" data-view="home">🏠 <span>City Home</span></button>
+        <button class="nav-item" data-view="map">🗺️ <span>Digital City Map</span></button>
+        <button class="nav-item" data-view="traffic">🚦 <span>Traffic</span></button>
+        <button class="nav-item" data-view="energy">⚡ <span>Energy</span></button>
+        <button class="nav-item" data-view="water">💧 <span>Water</span></button>
+        <button class="nav-item" data-view="waste">♻️ <span>Waste</span></button>
+        <button class="nav-item" data-view="transport">🚌 <span>Transport</span></button>
+        <button class="nav-item" data-view="safety">🚨 <span>Safety</span></button>
+        <button class="nav-item" data-view="ai">🤖 <span>AI Center</span></button>
+        <button class="nav-item" data-view="analytics">📊 <span>Analytics</span></button>
+        <button class="nav-item" data-view="settings">⚙️ <span>Settings</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" id="logoutBtn">↪️ <span>Logout</span></button>
+      </div>
+    </aside>
+
+    <main id="main" class="main">
+      <!-- HOME -->
+      <div class="view active-view" id="view-home">
+        <div class="page-heading">
+          <div><p class="eyebrow">LIVE OPERATIONS</p><h2>City Control Center</h2><p>Monitor AEROVA in real time.</p></div>
+          <button class="primary-btn" data-open="aiWindow">🤖 Ask AEROVA AI</button>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><span>🚦 Traffic Flow</span><strong id="trafficStat">72%</strong><small>Normal flow</small></div>
+          <div class="stat-card"><span>⚡ Energy Health</span><strong>84%</strong><small>Stable grid</small></div>
+          <div class="stat-card"><span>💧 Water Reserve</span><strong>68%</strong><small>1.8B litres</small></div>
+          <div class="stat-card"><span>🌱 Air Quality</span><strong>AQI 42</strong><small>Good</small></div>
+        </div>
+        <div class="content-grid two">
+          <section class="panel large">
+            <div class="panel-head"><div><h3>Live Digital City</h3><span>Simulation mode • 24 sensors online</span></div><button class="ghost-btn" data-view-link="map">Open Map</button></div>
+            <div class="city-map compact" id="homeMap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><div><h3>AI City Brief</h3><span>Updated just now</span></div></div>
+            <div class="ai-message"><div class="ai-icon">✦</div><p><b>Everything is stable.</b><br/>Traffic may increase near Central Avenue in the next 15 minutes. Two buses are approaching capacity.</p></div>
+            <div class="progress-line"><span>City health</span><b>91%</b><div><i style="width:91%"></i></div></div>
+            <div class="progress-line"><span>Service uptime</span><b>98.7%</b><div><i style="width:98.7%"></i></div></div>
+          </section>
+        </div>
+        <section class="panel">
+          <div class="panel-head"><div><h3>Quick Actions</h3><span>Open operational modules</span></div></div>
+          <div class="quick-actions">
+            <button data-open="trafficWindow">🚦 Traffic Control</button>
+            <button data-open="energyWindow">⚡ Energy Monitor</button>
+            <button data-open="waterWindow">💧 Water Network</button>
+            <button data-open="transportWindow">🚌 Transport Fleet</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- MODULE VIEWS -->
+      <div class="view" id="view-map"><div class="page-heading"><div><p class="eyebrow">DIGITAL TWIN</p><h2>Interactive City Map</h2><p>Click markers to inspect city assets.</p></div><div class="map-controls"><button id="zoomIn">+</button><button id="zoomOut">−</button><button id="resetMap">Reset</button></div></div><div class="panel map-panel"><div class="city-map full" id="mainMap"></div><div class="map-legend"><span>🚦 Traffic</span><span>⚡ Energy</span><span>💧 Water</span><span>🚌 Transport</span><span>🚨 Safety</span></div></div></div>
+
+      <div class="view" id="view-traffic"><div class="page-heading"><div><p class="eyebrow">MOBILITY</p><h2>Traffic Management</h2><p>Road flow, congestion and AI prediction.</p></div><button class="primary-btn" id="simulateTraffic">Run AI Prediction</button></div><div class="stats-grid"><div class="stat-card"><span>Average speed</span><strong>42 km/h</strong><small>+4% today</small></div><div class="stat-card"><span>Congested roads</span><strong id="congested">7</strong><small>of 64 monitored</small></div><div class="stat-card"><span>Signals online</span><strong>128/128</strong><small>100% uptime</small></div><div class="stat-card"><span>AI forecast</span><strong id="trafficForecast">Low</strong><small>next 15 minutes</small></div></div><div class="panel"><h3>Road Network</h3><div class="road-list"><div><b>Central Avenue</b><span class="badge warning">Moderate</span><em>68%</em></div><div><b>North Ring Road</b><span class="badge good">Clear</span><em>31%</em></div><div><b>Airport Corridor</b><span class="badge warning">Moderate</span><em>59%</em></div><div><b>River Bridge</b><span class="badge danger">Heavy</span><em>86%</em></div></div></div></div>
+
+      <div class="view" id="view-energy"><div class="page-heading"><div><p class="eyebrow">UTILITIES</p><h2>Energy Grid</h2><p>Monitor generation, demand and renewable sources.</p></div><button class="primary-btn" id="optimizeEnergy">Optimize Grid</button></div><div class="stats-grid"><div class="stat-card"><span>Current demand</span><strong>842 MW</strong><small>Stable</small></div><div class="stat-card"><span>Solar generation</span><strong>286 MW</strong><small>34% of demand</small></div><div class="stat-card"><span>Grid health</span><strong>99.2%</strong><small>Excellent</small></div><div class="stat-card"><span>Peak forecast</span><strong>1.1 GW</strong><small>7:30 PM</small></div></div><div class="panel chart-panel"><h3>24-Hour Energy Demand</h3><canvas id="energyChart" height="220"></canvas></div></div>
+
+      <div class="view" id="view-water"><div class="page-heading"><div><p class="eyebrow">UTILITIES</p><h2>Water Network</h2><p>Reservoir levels, consumption and leak detection.</p></div><button class="primary-btn" id="scanWater">Scan for Leaks</button></div><div class="stats-grid"><div class="stat-card"><span>Reservoir level</span><strong>68%</strong><small>Healthy</small></div><div class="stat-card"><span>Daily consumption</span><strong>1.8B L</strong><small>−2.4% vs yesterday</small></div><div class="stat-card"><span>Network pressure</span><strong>4.2 bar</strong><small>Normal</small></div><div class="stat-card"><span>Suspected leaks</span><strong id="leaks">2</strong><small>AI detected</small></div></div><div class="panel"><h3>Water Zones</h3><div class="zone-grid"><div><b>Zone A</b><span>92% healthy</span><i style="width:92%"></i></div><div><b>Zone B</b><span>78% healthy</span><i style="width:78%"></i></div><div><b>Zone C</b><span>65% healthy</span><i style="width:65%"></i></div><div><b>Zone D</b><span>88% healthy</span><i style="width:88%"></i></div></div></div></div>
+
+      <div class="view" id="view-waste"><div class="page-heading"><div><p class="eyebrow">SUSTAINABILITY</p><h2>Smart Waste</h2><p>Bin capacity and optimized collection routes.</p></div><button class="primary-btn" id="optimizeWaste">Optimize Routes</button></div><div class="stats-grid"><div class="stat-card"><span>Smart bins</span><strong>842</strong><small>Online</small></div><div class="stat-card"><span>Average fill</span><strong>61%</strong><small>−6% this week</small></div><div class="stat-card"><span>Recycling rate</span><strong>74%</strong><small>+8% this month</small></div><div class="stat-card"><span>Routes optimized</span><strong id="routes">24</strong><small>Today</small></div></div><div class="panel"><h3>Collection Fleet</h3><div class="fleet-row"><span>🚛 Truck A-12</span><b>Zone B</b><em>48% load</em><button>Track</button></div><div class="fleet-row"><span>🚛 Truck C-07</span><b>Zone D</b><em>72% load</em><button>Track</button></div><div class="fleet-row"><span>🚛 Truck F-19</span><b>Zone A</b><em>31% load</em><button>Track</button></div></div></div>
+
+      <div class="view" id="view-transport"><div class="page-heading"><div><p class="eyebrow">PUBLIC MOBILITY</p><h2>Transport Fleet</h2><p>Live buses, routes and passenger load.</p></div><button class="primary-btn" id="refreshFleet">Refresh Fleet</button></div><div class="stats-grid"><div class="stat-card"><span>Buses active</span><strong>186</strong><small>of 192</small></div><div class="stat-card"><span>On-time rate</span><strong>94%</strong><small>Excellent</small></div><div class="stat-card"><span>Passengers today</span><strong>284K</strong><small>+12%</small></div><div class="stat-card"><span>EV fleet</span><strong>62%</strong><small>Growing</small></div></div><div class="panel"><h3>Live Fleet</h3><div class="fleet-row"><span>🚌 AER-104</span><b>Route 12</b><em>72 passengers</em><button>Locate</button></div><div class="fleet-row"><span>🚌 AER-221</span><b>Route 04</b><em>41 passengers</em><button>Locate</button></div><div class="fleet-row"><span>🚌 AER-087</span><b>Route 19</b><em>88 passengers</em><button>Locate</button></div></div></div>
+
+      <div class="view" id="view-safety"><div class="page-heading"><div><p class="eyebrow">CITY SAFETY</p><h2>Safety Center</h2><p>Incidents, emergency response and monitored zones.</p></div><button class="primary-btn" id="testAlert">Test Emergency Alert</button></div><div class="stats-grid"><div class="stat-card"><span>Safety score</span><strong>96%</strong><small>Excellent</small></div><div class="stat-card"><span>Active incidents</span><strong>3</strong><small>Being handled</small></div><div class="stat-card"><span>Cameras online</span><strong>1,284</strong><small>99.8%</small></div><div class="stat-card"><span>Avg. response</span><strong>4m 12s</strong><small>−18 sec</small></div></div><div class="panel"><h3>Recent Incidents</h3><div class="incident"><span class="badge warning">Medical</span><b>Central Station</b><small>2 min ago</small><span>Response unit dispatched</span></div><div class="incident"><span class="badge good">Resolved</span><b>West Park</b><small>18 min ago</small><span>Minor traffic incident</span></div><div class="incident"><span class="badge danger">Priority</span><b>River Bridge</b><small>31 min ago</small><span>Emergency team en route</span></div></div></div>
+
+      <div class="view" id="view-ai"><div class="page-heading"><div><p class="eyebrow">INTELLIGENCE</p><h2>AI Center</h2><p>Ask questions and run city predictions.</p></div></div><div class="content-grid two"><section class="panel ai-console"><h3>✦ AEROVA AI</h3><div id="chatMessages" class="chat-messages"><div class="chat ai">Hello, Admin. I can analyze traffic, energy, water, transport and safety data.</div></div><div class="chat-input"><input id="aiInput" placeholder="Ask: What is the traffic forecast?" /><button id="sendAi">Send</button></div></section><section class="panel"><h3>Prediction Models</h3><div class="model-card"><b>Traffic Forecast</b><span>94% accuracy</span><button data-ai="Traffic congestion is expected to remain moderate around Central Avenue for the next 15 minutes.">Run</button></div><div class="model-card"><b>Energy Demand</b><span>91% accuracy</span><button data-ai="Peak demand is expected around 7:30 PM. Solar generation can offset approximately 34% of demand.">Run</button></div><div class="model-card"><b>Water Leak Detection</b><span>89% accuracy</span><button data-ai="Two zones show abnormal pressure patterns. A field inspection is recommended for Zone C.">Run</button></div></section></div></div>
+
+      <div class="view" id="view-analytics"><div class="page-heading"><div><p class="eyebrow">INSIGHTS</p><h2>City Analytics</h2><p>Performance indicators across AEROVA.</p></div><button class="primary-btn" id="exportData">Export Report</button></div><div class="panel"><canvas id="analyticsChart" height="260"></canvas></div><div class="stats-grid"><div class="stat-card"><span>Citizen satisfaction</span><strong>88%</strong><small>+5% this quarter</small></div><div class="stat-card"><span>CO₂ reduction</span><strong>21%</strong><small>vs baseline</small></div><div class="stat-card"><span>Digital services</span><strong>97%</strong><small>availability</small></div><div class="stat-card"><span>AI automations</span><strong>143</strong><small>this month</small></div></div></div>
+
+      <div class="view" id="view-settings"><div class="page-heading"><div><p class="eyebrow">CONFIGURATION</p><h2>Settings</h2><p>Customize your AEROVA control center.</p></div></div><div class="panel settings-panel"><label class="setting"><span><b>Dark interface</b><small>Use the dark control-center theme</small></span><input id="darkToggle" type="checkbox" checked /></label><label class="setting"><span><b>Live notifications</b><small>Receive operational alerts</small></span><input type="checkbox" checked /></label><label class="setting"><span><b>AI recommendations</b><small>Show predictive insights</small></span><input type="checkbox" checked /></label><label class="setting"><span><b>Compact sidebar</b><small>Collapse navigation labels</small></span><input id="compactToggle" type="checkbox" /></label></div></div>
+    </main>
+
+    <!-- DRAGGABLE WINDOWS -->
+    <div id="windowLayer">
+      <section class="floating-window" id="aiWindow"><div class="window-head"><b>🤖 AEROVA AI Assistant</b><button class="close-window">×</button></div><div class="window-body"><p>City systems are operating normally. Ask me about traffic, energy, water, waste or transport.</p><div class="window-actions"><button data-view-link="ai">Open AI Center</button></div></div></section>
+      <section class="floating-window" id="trafficWindow"><div class="window-head"><b>🚦 Traffic Control</b><button class="close-window">×</button></div><div class="window-body"><h3>Traffic flow: <span id="windowTraffic">72%</span></h3><div class="meter"><i style="width:72%"></i></div><p>Central Avenue is currently moderate. AI forecast: <b>Low → Moderate</b>.</p><button class="primary-btn" id="windowTrafficBtn">Simulate Change</button></div></section>
+      <section class="floating-window" id="energyWindow"><div class="window-head"><b>⚡ Energy Monitor</b><button class="close-window">×</button></div><div class="window-body"><h3>842 MW</h3><p>Current city demand</p><div class="meter"><i style="width:84%"></i></div><p>Renewables: 34%</p></div></section>
+      <section class="floating-window" id="waterWindow"><div class="window-head"><b>💧 Water Network</b><button class="close-window">×</button></div><div class="window-body"><h3>68% Reservoir</h3><p>Network health is normal. 2 possible leaks are under review.</p></div></section>
+      <section class="floating-window" id="transportWindow"><div class="window-head"><b>🚌 Fleet Tracker</b><button class="close-window">×</button></div><div class="window-body"><h3>186 buses active</h3><p>On-time rate: 94%. EV fleet: 62%.</p></div></section>
+      <section class="floating-window notifications" id="notificationWindow"><div class="window-head"><b>🔔 Notifications</b><button class="close-window">×</button></div><div class="window-body"><div class="notice">🚦 <b>Traffic</b><span>Central Avenue is becoming busy.</span></div><div class="notice">💧 <b>Water</b><span>Zone C pressure anomaly detected.</span></div><div class="notice">🚌 <b>Transport</b><span>Route 19 approaching capacity.</span></div></div></section>
+      <section class="floating-window profile" id="profileWindow"><div class="window-head"><b>👤 Administrator</b><button class="close-window">×</button></div><div class="window-body"><p><b>Role:</b> City Administrator</p><p><b>Access:</b> Full control</p><button class="primary-btn" id="profileLogout">Logout</button></div></section>
+    </div>
+    <div id="toast"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
